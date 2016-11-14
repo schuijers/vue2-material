@@ -12,12 +12,12 @@ module.exports = {
     rules: [
       {
         test: /\.vue$/,
-        loader: 'vue',
+        loader: 'vue-loader',
         options: {
           loaders: {
             css: ExtractTextPlugin.extract({
               fallbackLoader: 'vue-style-loader',
-              loader: 'css?sourceMap'
+              loader: 'css-loader?sourceMap'
             })
           }
         }
@@ -25,14 +25,18 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: 'babel'
+        loader: 'babel-loader'
       },
       {
         test: /\.css$/,
         loader: ExtractTextPlugin.extract({
           fallbackLoader: 'vue-style-loader',
-          loader: 'css?sourceMap&importLoaders=1!postcss'
+          loader: 'css-loader?sourceMap&importLoaders=1!postcss-loader'
         })
+      },
+      {
+        test: /\.(eot|ttf|woff|woff2)$/,
+        loader: 'file-loader?name=assets/fonts/[name].[ext]'
       }
     ]
   },
